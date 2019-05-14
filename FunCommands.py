@@ -2,6 +2,7 @@ import discord
 import random
 import requests
 import pprint
+import json
 from discord.ext import commands
 
 class FunCommands(commands.Cog):
@@ -27,11 +28,12 @@ class FunCommands(commands.Cog):
                     'Content-Type': 'application/json',
                     'x-api-key': '17d94b92-754f-46eb-99a0-65be65b5d18f'
         }
-        response = requests.request('GET', url, headers = headers)
+        response = requests.get(url=url,headers = headers)
+        x = response.json()
         pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(response.json())
-        catURL=response[0]['url']
-        await ctx.send(f'catURL')
+        pp.pprint(x[0]['url'])
+        y = x[0]['url']
+        await ctx.send(f'Here\'s your cat picture {y}')
 
 def setup(client):
     client.add_cog(FunCommands(client))
