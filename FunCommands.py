@@ -1,6 +1,7 @@
 import discord
 import random
 import requests
+import pprint
 from discord.ext import commands
 
 class FunCommands(commands.Cog):
@@ -27,6 +28,10 @@ class FunCommands(commands.Cog):
                     'x-api-key': '17d94b92-754f-46eb-99a0-65be65b5d18f'
         }
         response = requests.request('GET', url, headers = headers)
-        await ctx.send(response.json()[''])
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(response.json())
+        catURL=response[0]['url']
+        await ctx.send(f'catURL')
+
 def setup(client):
     client.add_cog(FunCommands(client))
