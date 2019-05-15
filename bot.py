@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 client = commands.Bot(command_prefix = '!')
-extensions=['FunCommands']
+extensions=['FunCommands','LevelingSystem']
 
 @client.event
 async def on_ready():
