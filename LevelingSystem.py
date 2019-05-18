@@ -1,3 +1,4 @@
+'''
 import discord
 import json
 import os
@@ -9,7 +10,7 @@ class LevelingSystem(commands.Cog):
     def __init__(self,client):
         self.client = client
 
-    os.chdir(r'C:\Users\SORA_\OneDrive\Desktop\PyBot\ARC-Next')
+    os.chdir(r'C:\Users\Kristian\Documents\GitHub\ARC-Next')
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -61,3 +62,4 @@ async def level_up(self,users, user, channel):
 
 def setup(client):
     client.add_cog(LevelingSystem(client))
+'''

@@ -35,5 +35,18 @@ class FunCommands(commands.Cog):
         y = x[0]['url']
         await ctx.send(f'Here\'s your cat picture {y}')
 
+    async def dogpls(self,ctx):
+        url = 'https://dog.ceo/api/breeds/list/all'
+        headers = {
+                    'Content-Type': 'application/json',
+                    'x-api-key': '17d94b92-754f-46eb-99a0-65be65b5d18f'
+        }
+        response = requests.get(url=url)
+        x = response.json()
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(x[0]['url'])
+        y = x[0]['url']
+        await ctx.send(f'Here\'s your cat picture {y}')
+
 def setup(client):
     client.add_cog(FunCommands(client))
