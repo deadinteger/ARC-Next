@@ -44,5 +44,19 @@ class FunCommands(commands.Cog):
         #pp.pprint(x["message"])
         await ctx.send(f'Here\'s your dog picture {x["message"]}')
 
+    @commands.command()
+
+    async def taemail(self,ctx):
+        response = requests.get("https://privatix-temp-mail-v1.p.rapidapi.com/request/domains/",
+        headers={
+            "X-RapidAPI-Host": "privatix-temp-mail-v1.p.rapidapi.com",
+            "X-RapidAPI-Key": "0ed12ef340msh2e9ae05ab59ee36p11fd0bjsn3fa84321961e"
+        })
+
+        x = response.json()
+        pp = pprint.PrettyPrinter(indent = 4)
+        pp.pprint(x)
+        #await ctx.send()
+
 def setup(client):
     client.add_cog(FunCommands(client))
