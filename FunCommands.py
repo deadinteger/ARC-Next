@@ -2,7 +2,6 @@ import discord
 import random
 import requests
 import pprint
-import json
 from discord.ext import commands
 
 class FunCommands(commands.Cog):
