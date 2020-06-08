@@ -1,49 +1,29 @@
 import discord
+import os
 from discord.ext import commands
 
 
-client = commands.Bot(command_prefix = '!')
-extensions=['FunCommands']
-
-@client.event
-async def on_ready():
-    print('ARC-Next is ready')
-
-@client.event
-async def on_member_join(member):
-    print(f'{member} has joined the server')
-
-@client.event
-async def on_member_remove(member):
-    print(f'{member} has left the server')
+client = commands.Bot(command_prefix = '[]')
 
 @client.command()
-async def load(extension):
-    try:
-        client.load_extension(extension)
-        print('Loaded {}'.format(extension))
-    except Exception as error:
-        print('{} cannot be loaded. [{}]'.format(extension,error))
+async def load(ctx, extension):
+    client.load_extension(f'cogs.{extension}')
+    print(f'{extension} has been loaded')
 
 @client.command()
-async def unload(extension):
-    try:
-        client.unload_extension(extension)
-        print('Unloaded {}'.format(extension))
-    except Exception as error:
-        print('{} cannot be unloaded. [{}]'.format(extension,error))
+async def unload(ctx, extension):
+    client.unload_extension(f'cogs.{extension}')
+    print(f'{extension} has been unloaded')
 
 @client.command()
-async def ping(context):
-    await context.send(f'Pong! {round(client.latency * 1000)}ms')
+async def reload(ctx, extension):
+    client.reload_extension(f'cogs.{extension}')
+    print(f'{extension} has been reloaded')
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
+        print(f'{filename} has been loaded')
 
 
-
-if __name__ == '__main__':
-    for extension in extensions:
-        try:
-            client.load_extension(extension)
-            print('{} has been loaded successfully'.format(extension))
-        except Exception as error:
-            print('{} cannot be loaded. [{}]'.format(extension,error))
-    client.run('NDY2MDMzNDIwMTIwODgzMjAx.XNilnA.eyBQLO_ki1uqIPFitVZTIB_5e58')
+client.run('NDY2MDMzNDIwMTIwODgzMjAx.XtlxTg.BhpYfIZrMk4syeDOYw9NEYtqUA0')
