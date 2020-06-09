@@ -17,17 +17,9 @@ async def unload(ctx, extension):
 
 @client.command()
 async def reload(ctx, extension):
-    try:
-        client.reload_extension(f'cogs.{extension}')
-        print(f'{extension} has been reloaded')
-        await ctx.send(f'{extension} has been reloaded')
-    except:
-        for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
-                client.load_extension(f'cogs.{filename[:-3]}')
-                print(f'{filename} has been loaded')
-        print('All extensions have been reloaded')
-        await ctx.send('All extensions have been reloaded')
+    client.reload_extension(f'cogs.{extension}')
+    print(f'{extension} has been reloaded')
+    await ctx.send(f'{extension} has been reloaded')
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
