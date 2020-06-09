@@ -33,6 +33,19 @@ class FunCommands(commands.Cog):
         pp.pprint(x[0]['url'])
         y = x[0]['url']
         await ctx.send(f'Here\'s your cat picture {y}')
+    @commands.command()
+    async def recipe(self,ctx,query,cuisine):
+        url = 'https://api.spoonacular.com/recipes/search'
+        headers = {
+            'Content-Type': 'application/json',
+        }
+        number = 10
+        instructionsRequired = True
+        parameters = {query, cuisine,number, instructionsRequired}
+        response = requests.get(url=url, headers=headers, params=parameters)
+        x = response.json()
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(x)
 
     @commands.command()
     async def dogpls(self,ctx):
