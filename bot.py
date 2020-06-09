@@ -16,7 +16,7 @@ async def unload(ctx, extension):
     await ctx.send(f'{extension} has been unloaded')
 
 @client.command()
-async def reload(ctx,* ,extension):
+async def reload(ctx, extension):
     try:
         client.reload_extension(f'cogs.{extension}')
         print(f'{extension} has been reloaded')
