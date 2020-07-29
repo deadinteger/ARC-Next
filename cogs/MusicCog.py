@@ -29,7 +29,6 @@ class MusicCog(commands.Cog):
     async def play(self, ctx, url):
         os.mkdir("songs")
         songs = []
-
         await ctx.send("Obtaining music")
         server = ctx.message.author.guild
         voice = ctx.message.author.guild.voice_client
