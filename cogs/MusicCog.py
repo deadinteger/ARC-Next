@@ -42,6 +42,11 @@ class MusicCog(commands.Cog):
         self.downloadSong(url, songs)
 
     def downloadSong(self, url, songs):
+        try:
+            os.mkdir("./songs/")
+        except:
+            print("Folder already made")
+
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
@@ -56,7 +61,7 @@ class MusicCog(commands.Cog):
             ydl.download([url])
         for file in os.listdir('./'):
             if file.endswith('mp3'):
-                shutil.move(file, "./songs")
+                shutil.move(f'./{file}', f'./songs/{file}')
                 songs.append(file)
         time.sleep(10)
 
