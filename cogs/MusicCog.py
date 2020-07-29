@@ -40,7 +40,7 @@ class MusicCog(commands.Cog):
         await ctx.send("Getting everything ready now")
         server = ctx.message.author.guild
         voice = server.voice_client
-
+        print(type(voice))
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
