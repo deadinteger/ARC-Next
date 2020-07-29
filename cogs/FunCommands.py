@@ -53,6 +53,7 @@ class FunCommands(commands.Cog):
             elif member[1] == 1:
                 cake = "Cake"
             await ctx.send(f'{member[0]} is {cake}\n')
+            print(f'{member[0]} is {cake}\n')
         await ctx.send('Done')
 
     @commands.command()
