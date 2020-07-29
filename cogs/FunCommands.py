@@ -45,8 +45,6 @@ class FunCommands(commands.Cog):
             memberArray.append(tupMember)
         await ctx.send("Here is the cake report:")
         for member in memberArray:
-            #pp = pprint.PrettyPrinter(indent=4)
-            #pp.pprint(member[0])
             cake = "NULL"
             if member[1] == 0:
                 cake = "Not Cake"
@@ -61,8 +59,8 @@ class FunCommands(commands.Cog):
         classes = ['Thief', 'Page', 'Bard', 'Maid', 'Knight', 'Rogue', 'Prince', 'Sylph', 'Seer', 'Witch', 'Mage',
                    'Heir', 'Muse', 'Lord']
         aspects = ["Space", "Time", "Hope", "Rage", 'Blood', "Breath", "Light", "Void", "Heart", "Mind", "Life", "Doom"]
-        classhs = classes[random.randint(0,13)]
-        aspect =  aspects[random.randint(0,11)]
+        classhs = classes[random.randint(0, 13)]
+        aspect = aspects[random.randint(0, 11)]
         await ctx.send(f'{ctx.message.author.name} you are a {classhs} of {aspect}')
 
     @commands.command()
