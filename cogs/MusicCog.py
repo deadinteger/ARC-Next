@@ -34,7 +34,7 @@ class MusicCog(commands.Cog):
         voice = ctx.message.author.guild.voice_client
         name = ""
         self.downloadSong(url, songs)
-        while songs[0]:
+        if songs[0]:
             self.playSong(voice, ctx, songs)
 
     @commands.command()
