@@ -37,7 +37,7 @@ class FunCommands(commands.Cog):
 
     @commands.command()
     async def cakeCheck(self,ctx):
-        memberArray = {}
+        memberArray = []
         await ctx.send(f'{ctx.message.author} Accruing cake report')
         for member in ctx.guild.members:
             id = member.name
