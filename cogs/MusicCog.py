@@ -61,13 +61,14 @@ class MusicCog(commands.Cog):
                 os.rename(file, "song.mp3")
         try:
             voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('done', e))
-            voice.source = discord.PCMVolumeTransformer(voice.source)
-            voice.source.volume = 0.07
-            nname = name.rsplit("-", 2)
-            await ctx.send(f"Playing: {nname[0]}")
-            print("playing\n")
         except AttributeError:
             ctx.send("The bot must be joined into a voice chat with you first before playing \n Use []join while in vc")
+        voice.source = discord.PCMVolumeTransformer(voice.source)
+        voice.source.volume = 0.07
+        nname = name.rsplit("-", 2)
+        await ctx.send(f"Playing: {nname[0]}")
+        print("playing\n")
+
 
     @commands.command()
     async def play2(self, ctx, url):
