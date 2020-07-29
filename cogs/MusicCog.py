@@ -53,7 +53,7 @@ class MusicCog(commands.Cog):
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             print("Downloading audio now\n")
             ydl.download([url])
-
+        name = ""
         for file in os.listdir("./"):
             if file.endswith(".mp3"):
                 name = file
@@ -62,13 +62,12 @@ class MusicCog(commands.Cog):
         try:
             voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('done', e))
         except AttributeError:
-            ctx.send("The bot must be joined into a voice chat with you first before playing \n Use []join while in vc")
+            ctx.send("The bot is not in a voice channel, use []join")
         voice.source = discord.PCMVolumeTransformer(voice.source)
         voice.source.volume = 0.07
         nname = name.rsplit("-", 2)
         await ctx.send(f"Playing: {nname[0]}")
         print("playing\n")
-
 
     @commands.command()
     async def play2(self, ctx, url):
