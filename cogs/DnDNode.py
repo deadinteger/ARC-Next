@@ -16,15 +16,15 @@ class DnDNode(commands.Cog):
         server = ctx.guild.id
         members = ctx.guild.members
         if os.path.exists(f'{server}') & os.path.isdir(f'{server}'):
-            ctx.send("Server already exists")
+            await ctx.send("Server already exists")
         else:
             try:
                 os.makedirs(f'{server}')
             except OSError:
                 print("Path creation failed.")
-                ctx.send("Path creation failure")
+                await ctx.send("Path creation failure")
             else:
-                ctx.send("Path creation success!")
+                await ctx.send("Path creation success!")
             for member in members:
                 try:
                     os.makedirs(f'{server}/{member.id}')
