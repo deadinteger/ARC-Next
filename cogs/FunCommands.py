@@ -43,11 +43,17 @@ class FunCommands(commands.Cog):
             id = member.name
             tupMember = (id, random.randint(0,1))
             memberArray.append(tupMember)
+        await ctx.send("Here is the cake report:")
         for member in memberArray:
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(member[0])
+            #pp = pprint.PrettyPrinter(indent=4)
+            #pp.pprint(member[0])
+            cake = "NULL"
+            if member[1] == 0:
+                cake == "Not Cake"
+            elif member[1] == 1:
+                cake == "Cake"
+            await ctx.send(f'{member[0]} is {cake}\n')
         await ctx.send('Done')
-
 
     @commands.command()
     async def dogpls(self,ctx):
