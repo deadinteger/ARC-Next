@@ -58,7 +58,7 @@ class MusicCog(commands.Cog):
             if file.endswith('mp3'):
                 shutil.move(file, "./songs")
                 songs.append(file)
-        time.sleep(5)
+        time.sleep(10)
 
     def playSong(self, voice, ctx, songs):
         try:
