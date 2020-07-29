@@ -66,7 +66,7 @@ class MusicCog(commands.Cog):
             voice.play(discord.FFmpegPCMAudio(currsong))
             voice.source = discord.PCMVolumeTransformer(voice.source)
             voice.source.volume = 0.07
-            os.remove(currsong)
+            # os.remove(currsong)
         except AttributeError:
             ctx.send("The bot is not in a voice channel, use []join")
 
