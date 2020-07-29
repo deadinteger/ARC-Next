@@ -27,9 +27,6 @@ class MusicCog(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, url):
-                os.remove("song.mp3")
-                print("Removed old song file")
-        except PermissionError:
         os.mkdir("songs")
         songs = []
 
