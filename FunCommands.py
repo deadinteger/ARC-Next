@@ -33,7 +33,7 @@ class FunCommands(commands.Cog):
         pp.pprint(x[0]['url'])
         y = x[0]['url']
         await ctx.send(f'Here\'s your cat picture {y}')
-        
+
     # @commands.command()
     # async def recipe(self,ctx,query,cuisine):
     #     url = 'https://api.spoonacular.com/recipes/search'

@@ -36,6 +36,19 @@ class FunCommands(commands.Cog):
         await ctx.send(f'Here\'s your cat picture {y}')
 
     @commands.command()
+    async def cakeCheck(self,ctx):
+        memberArray = {}
+        await ctx.send(f'{ctx.message.author} Accruing cake report')
+        for member in ctx.guild.members:
+            id = member.name
+            memberArray.append(id,random.randint(0,1))
+        for member in memberArray:
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(member[0])
+        await ctx.send('Done')
+
+
+    @commands.command()
     async def dogpls(self,ctx):
         url = 'https://dog.ceo/api/breeds/image/random'
         response = requests.get(url=url)
