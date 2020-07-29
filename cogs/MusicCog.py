@@ -34,7 +34,7 @@ class MusicCog(commands.Cog):
         voice = ctx.message.author.guild.voice_client
         name = ""
         self.downloadSong(url, songs)
-        if songs[0]:
+        while songs[0]:
             self.playSong(voice, ctx, songs)
 
     @commands.command()
@@ -63,6 +63,7 @@ class MusicCog(commands.Cog):
     def playSong(self, voice, ctx, songs):
         try:
             currsong = songs.pop(0)
+            print(os.listdir())
             voice.play(discord.FFmpegPCMAudio(f'songs\\{currsong}'))
             voice.source = discord.PCMVolumeTransformer(voice.source)
             voice.source.volume = 0.07
