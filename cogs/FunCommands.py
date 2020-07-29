@@ -41,7 +41,7 @@ class FunCommands(commands.Cog):
         await ctx.send(f'{ctx.message.author} Accruing cake report')
         for member in ctx.guild.members:
             id = member.name
-            tupMember = (id, random.randint(0, 2))
+            tupMember = (id, random.randint(0, 1))
             memberArray.append(tupMember)
         await ctx.send("Here is the cake report:")
         for member in memberArray:
