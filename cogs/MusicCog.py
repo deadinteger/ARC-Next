@@ -18,10 +18,6 @@ class MusicCog(commands.Cog):
     async def join(self, ctx):
         channel = ctx.message.author.voice.channel
         await channel.connect()
-        discord.opus.load_opus('opus')
-        if not discord.opus.is_loaded():
-            raise RuntimeError('Opus failed to load')
-        print(discord.opus.is_loaded())
 
     @commands.command()
     async def leave(self, ctx):
@@ -41,7 +37,7 @@ class MusicCog(commands.Cog):
             await ctx.send("ERROR: Music playing")
             return
 
-        await ctx.send("Getting everything ready now")
+        await ctx.send("Obtaining music")
         server = ctx.message.author.guild
         voice = ctx.message.author.guild.voice_client
         print(type(voice))
@@ -63,12 +59,15 @@ class MusicCog(commands.Cog):
                 name = file
                 print(f"Renamed File: {file}\n")
                 os.rename(file, "song.mp3")
-        voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('done', e))
-        voice.source = discord.PCMVolumeTransformer(voice.source)
-        voice.source.volume = 0.07
-        nname = name.rsplit("-", 2)
-        await ctx.send(f"Playing: {nname[0]}")
-        print("playing\n")
+        try:
+            voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('done', e))
+            voice.source = discord.PCMVolumeTransformer(voice.source)
+            voice.source.volume = 0.07
+            nname = name.rsplit("-", 2)
+            await ctx.send(f"Playing: {nname[0]}")
+            print("playing\n")
+        except AttributeError:
+            ctx.send("The bot must be joined into a voice chat with you first before playing \n Use []join while in vc")
 
     @commands.command()
     async def play2(self, ctx, url):
