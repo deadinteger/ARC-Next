@@ -55,7 +55,7 @@ class MusicCog(commands.Cog):
             ydl.download([url])
         for file in os.listdir('./'):
             if file.endswith('mp3'):
-                shutil.move("./", "./songs")
+                shutil.move(file, "./songs")
                 songs.append(file)
 
     def playSong(self, voice, ctx, songs):
