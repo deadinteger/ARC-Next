@@ -63,9 +63,10 @@ class MusicCog(commands.Cog):
     def playSong(self, voice, ctx, songs):
         try:
             currsong = songs.pop(0)
-            voice.play(discord.FFmpegPCMAudio(currsong), after=lambda e: os.remove(currsong))
+            voice.play(discord.FFmpegPCMAudio(currsong))
             voice.source = discord.PCMVolumeTransformer(voice.source)
             voice.source.volume = 0.07
+            os.remove(currsong)
         except AttributeError:
             ctx.send("The bot is not in a voice channel, use []join")
 
