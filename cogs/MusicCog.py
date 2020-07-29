@@ -27,11 +27,6 @@ class MusicCog(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, url):
-        try:
-            os.mkdir("songs")
-        except:
-            print("folder already exists")
-    
         songs = []
         await ctx.send("Obtaining music")
         server = ctx.message.author.guild
