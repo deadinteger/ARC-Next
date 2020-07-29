@@ -15,7 +15,7 @@ class LevelingSystem2(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         print("Message Sent")
-        with open('users.json','r') as f:
+        with open('../users.json', 'r') as f:
             users = json.load(f)
 
         for key in users.keys():
@@ -27,7 +27,7 @@ class LevelingSystem2(commands.Cog):
                 users[message.author.id]['level'] = 1
         users[message.author.id]['experience'] += 5
 
-        with open('users.json','w') as f:
+        with open('../users.json', 'w') as f:
             json.dump(users,f)
 
 
