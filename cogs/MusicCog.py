@@ -27,22 +27,25 @@ class MusicCog(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, url):
-        queue = []
-        song_there = os.path.isfile("song.mp3")
-        try:
-            if song_there:
                 os.remove("song.mp3")
                 print("Removed old song file")
         except PermissionError:
-            print("Trying to delete song file, but it's being played")
-            await ctx.send("ERROR: Music playing")
-            return
+        os.mkdir("songs")
+        songs = []
 
         await ctx.send("Obtaining music")
         server = ctx.message.author.guild
         voice = ctx.message.author.guild.voice_client
         name = ""
-        print(os.getcwd())
+        self.downloadSong(url, songs)
+        if not songs:
+            self.playSong(voice, ctx, songs)
+
+    @commands.command()
+    async def queue(self, ctx, url, songs):
+        self.downloadSong(url, songs)
+
+    def downloadSong(self, url, songs):
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
@@ -55,36 +58,19 @@ class MusicCog(commands.Cog):
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             print("Downloading audio now\n")
             ydl.download([url])
-        for file in os.listdir("./"):
-            if file.endswith(".mp3"):
-                name = file
-                print(f"Renamed File: {file}\n")
-                os.rename(file, "song.mp3")
+        for file in os.listdir('./'):
+            if file.endswith('mp3'):
+                shutil.move("./", "./songs")
+                songs.append(file)
+
+    def playSong(self, voice, ctx, songs):
         try:
-            voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('done', e))
+            voice.source = discord.PCMVolumeTransformer(voice.source)
+            voice.source.volume = 0.07
+            currsong = songs.pop(0)
+            voice.play(discord.FFmpegPCMAudio(currsong), after=lambda e: os.remove(currsong))
         except AttributeError:
             ctx.send("The bot is not in a voice channel, use []join")
-        except discord.errors.ClientException:
-            queue.append(url)
-        voice.source = discord.PCMVolumeTransformer(voice.source)
-        voice.source.volume = 0.07
-        nname = name.rsplit("-", 2)
-        await ctx.send(f"Playing: {nname[0]}")
-        print("playing\n")
-
-    def downloadSong(self, url):
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-        }
-
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            print("Downloading audio now\n")
-            ydl.download([url])
 
     @commands.command
     async def pause(self, ctx):
