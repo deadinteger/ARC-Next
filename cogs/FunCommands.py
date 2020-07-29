@@ -57,6 +57,15 @@ class FunCommands(commands.Cog):
         await ctx.send('Done')
 
     @commands.command()
+    async def classpect(self,ctx):
+        classes = ['Thief', 'Page', 'Bard', 'Maid', 'Knight', 'Rogue', 'Prince', 'Sylph', 'Seer', 'Witch', 'Mage',
+                   'Heir', 'Muse', 'Lord']
+        aspects = ["Space", "Time", "Hope", "Rage", 'Blood', "Breath", "Light", "Void", "Heart", "Mind", "Life", "Doom"]
+        classhs = classes[random.randint(0,13)]
+        aspect =  aspects[random.randint(0,11)]
+        ctx.reply(f'you are a {classhs} of {aspect}')
+
+    @commands.command()
     async def dogpls(self,ctx):
         url = 'https://dog.ceo/api/breeds/image/random'
         response = requests.get(url=url)
