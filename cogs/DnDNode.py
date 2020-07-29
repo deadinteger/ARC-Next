@@ -3,6 +3,7 @@ import requests
 import pprint
 import json
 import os
+import os.path
 from discord.ext import commands
 
 
@@ -14,7 +15,7 @@ class DnDNode(commands.Cog):
     async def newdndserver(self,ctx):
         server = ctx.guild.id
         members = ctx.guild.members
-        if f'{server}'.isdir() & f'{server}.exists()':
+        if os.path.exists(f'{server}') & os.path.isdir(f'{server}'):
             ctx.send("Server already exists")
         else:
             try:
