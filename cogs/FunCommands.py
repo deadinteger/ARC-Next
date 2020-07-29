@@ -63,7 +63,7 @@ class FunCommands(commands.Cog):
         aspects = ["Space", "Time", "Hope", "Rage", 'Blood', "Breath", "Light", "Void", "Heart", "Mind", "Life", "Doom"]
         classhs = classes[random.randint(0,13)]
         aspect =  aspects[random.randint(0,11)]
-        await ctx.reply(f'you are a {classhs} of {aspect}')
+        await ctx.send(f'{ctx.message.author}you are a {classhs} of {aspect}')
 
     @commands.command()
     async def dogpls(self,ctx):
