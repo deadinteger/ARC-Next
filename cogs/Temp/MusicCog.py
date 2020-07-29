@@ -54,7 +54,7 @@ class MusicCog(commands.Cog):
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             print("Downloading audio now\n")
             ydl.download([url])
-        for file in os.listdir('./'):
+        for file in os.listdir('../'):
             if file.endswith('mp3'):
                 shutil.move(f'./{file}', f'./songs/{file}')
                 print(os.listdir())
