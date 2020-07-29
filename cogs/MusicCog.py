@@ -18,7 +18,7 @@ class MusicCog(commands.Cog):
     async def join(self, ctx):
         channel = ctx.message.author.voice.channel
         await channel.connect()
-        discord.opus.load_opus('opuslib')
+        discord.opus.load_opus('opus')
         if not discord.opus.is_loaded():
             raise RuntimeError('Opus failed to load')
         print(discord.opus.is_loaded())
