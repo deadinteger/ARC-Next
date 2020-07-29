@@ -63,7 +63,7 @@ class MusicCog(commands.Cog):
     def playSong(self, voice, ctx, songs):
         try:
             currsong = songs.pop(0)
-            print(os.listdir(songs))
+            print(os.listdir("songs"))
             voice.play(discord.FFmpegPCMAudio(f'songs\\{currsong}'))
             voice.source = discord.PCMVolumeTransformer(voice.source)
             voice.source.volume = 0.07
