@@ -2,6 +2,7 @@ import discord
 import random
 import requests
 import asyncio
+import time
 import shutil
 import pprint
 import os
@@ -57,6 +58,7 @@ class MusicCog(commands.Cog):
             if file.endswith('mp3'):
                 shutil.move(file, "./songs")
                 songs.append(file)
+        time.sleep(5)
 
     def playSong(self, voice, ctx, songs):
         try:
