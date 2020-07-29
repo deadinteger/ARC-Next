@@ -17,9 +17,20 @@ class DnDNode(commands.Cog):
         if f'{server}'.isdir() & f'{server}.exists()':
             ctx.send("Server already exists")
         else:
-            os.makedirs(f'{server}')
+            try:
+                os.makedirs(f'{server}')
+            except OSError:
+                print("Path creation failed.")
+                ctx.send("Path creation failure")
+            else:
+                ctx.send("Path creation success!")
             for member in members:
-                os.makedirs(f'{server}/{member.id}')
+                try:
+                    os.makedirs(f'{server}/{member.id}')
+                except OSError:
+                    print("Path creation failed.")
+                else:
+                    print("Path creation success!")
 
 
 def setup(client):
