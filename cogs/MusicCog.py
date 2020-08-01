@@ -40,7 +40,7 @@ class MusicCog(commands.Cog):
     async def queue(self, ctx, url):
         self.downloadSong(url, songs)
 
-    def downloadSong(self, url, songs):
+    def downloadSong(self, url):
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
