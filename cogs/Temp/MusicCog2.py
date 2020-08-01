@@ -54,7 +54,7 @@ class MusicCog(commands.Cog):
             print("Downloading audio now\n")
             ydl.download([url])
 
-        for file in os.listdir("./"):
+        for file in os.listdir("../"):
             if file.endswith(".mp3"):
                 name = file
                 print(f"Renamed File: {file}\n")
@@ -89,7 +89,7 @@ class MusicCog(commands.Cog):
                     if(song_there):
                         os.remove("song.mp3")
                     shutil.move(song_path, main_location)
-                    for file in os.listdir("./"):
+                    for file in os.listdir("../"):
                         if file.endswith(".mp3"):
                             os.rename(file, 'song.mp3')
 
@@ -142,7 +142,7 @@ class MusicCog(commands.Cog):
             print("Downloading audio now\n")
             ydl.download([url])
 
-        for file in os.listdir("./"):
+        for file in os.listdir("../"):
             if file.endswith(".mp3"):
                 name = file
                 print(f"Renamed File: {file}\n")

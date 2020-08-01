@@ -61,5 +61,6 @@ class Administrative(commands.Cog):
                 await ctx.send(f'{member.name} does not have the role {role}')
                 await member.ban(reason = "Protection protocol level 2")
 
+
 def setup(client):
     client.add_cog(Administrative(client))
