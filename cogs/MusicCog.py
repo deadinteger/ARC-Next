@@ -63,7 +63,7 @@ class MusicCog(commands.Cog):
 
     def playSong(self, voice, ctx):
         try:
-            currsong = songs.pop(0)
+            currsong = self.songs.pop(0)
             print(os.listdir("./songs"))
             currsong = f'./songs/{currsong}'
             print(f'currSong is {currsong}')
