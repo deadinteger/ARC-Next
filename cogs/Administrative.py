@@ -6,10 +6,6 @@ class Administrative(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
-
 
     @commands.command()
     async def clear(self, ctx, amount =5):
@@ -60,7 +56,6 @@ class Administrative(commands.Cog):
             if role not in member.roles:
                 await ctx.send(f'{member.name} does not have the role {role}')
                 await member.ban(reason = "Protection protocol level 2")
-
 
 def setup(client):
     client.add_cog(Administrative(client))
