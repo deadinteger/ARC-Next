@@ -85,5 +85,10 @@ class FunCommands(commands.Cog):
         pp.pprint(x)
         #await ctx.send()
 
+    @commands.command()
+    async def slap(self, ctx, member: discord.Member):
+        await ctx.send(f'Slapped {member}')
+
+
 def setup(client):
     client.add_cog(FunCommands(client))

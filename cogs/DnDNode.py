@@ -2,6 +2,7 @@ import random
 import requests
 import pprint
 import json
+import re
 import os
 import os.path
 from discord.ext import commands
@@ -46,9 +47,17 @@ class DnDNode(commands.Cog):
         await ctx.send("https://www.fantasynamegenerators.com/")
 
     @commands.command()
-    async def roll(self, ctx, dice):
-        if dice == 4 | dice == 6 | dice == 8 | dice == 12 | dice == 20:
-            await ctx.send(random.randint(1, dice))
+    async def roll(self, ctx, dice, reason):
+        rolled = re.split(r'd', dice)
+        print(rolled)
+        if rolled[0].isnumeric():
+            results = []
+            output = f'```Reason: {reason}``````Rolls: '
+            for x in range(0, int(rolled[0])):
+                results.append(random.randint(1, int(rolled[1])))
+                output += f'{(results[x])} '
+            output += f'``````Total = {sum(results)}``` '
+            await ctx.send(output)
         else:
             await ctx.send("Please use a valid 5e dice type, 4, 6, 8, 12 and 20 \n Ex: /roll 4")
 
